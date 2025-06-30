@@ -372,7 +372,7 @@
     ></script>
     <script type="text/javascript">
       (function () {
-        emailjs.init("_8MVLqCxWxZHFksgv"); // Public Key
+        emailjs.init(process.env.PUBLIC_KEY); 
       })();
     </script>
 
@@ -383,7 +383,7 @@
       form.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        emailjs.sendForm("service_op7quvn", "template_9p2ojhm", this).then(  // Service Key, Template Key
+        emailjs.sendForm(process.env.SERVICE_ID, process.env.TEMPLATE_ID, this).then( 
           function () {
             showMessage("Message sent successfully!", "success");
             form.reset();
