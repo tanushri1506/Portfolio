@@ -1,8 +1,14 @@
-body {
+*{
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
   font-family: Arial, Helvetica, sans-serif;
   color: lightgray;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 html {
@@ -14,12 +20,13 @@ html {
 .container {
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 100px;
   background-color: #14296a38;
+  
 }
 
 .back-vid {
@@ -44,6 +51,7 @@ header {
   backdrop-filter: blur(5px);
   box-shadow: 0 0 10px #72a1dea2;
   z-index: 999;
+  overflow-x: hidden;
 }
 
 .left {
@@ -55,7 +63,7 @@ header {
 header ul {
   display: flex;
   justify-content: space-between;
-  width: 20%;
+  width: 30%;
   padding: 15px 10px;
 }
 
@@ -106,16 +114,20 @@ header ul a:hover {
 .hero {
   position: relative;
   display: flex;
+  flex-direction: column; /* Stack for mobile */
   width: 100%;
   height: 100vh;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
 }
 
 .hero-info {
-  position: absolute;
-  left: 25%;
+  position: relative;
+  transform: none;
   text-align: center;
+  max-width: 100%;
 }
 
 .hero-info .hero-info-title {
@@ -123,24 +135,25 @@ header ul a:hover {
   padding: 8px 5px;
   border-radius: 50px;
   border: 1px solid #72a1de94;
-  width: 240px;
+  width: fit-content;
+  margin: 0 auto;
   background-color: #2200493d;
   box-shadow: 0 0 5px #72a1de84;
 }
 
 .hero-info h1 {
-  font-size: 80px;
+  font-size: 60px;
   font-weight: 700;
   line-height: 70px;
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .hero-info p {
-  line-height: 40px;
+  line-height: 1.4;
   max-width: 700px;
-  margin-bottom: 10px;
-  font-size: 30px;
+  margin: 0 auto 20px;
+  font-size: 24px;
 }
 
 .scroll-down {
@@ -148,12 +161,14 @@ header ul a:hover {
   width: 30px;
   border: 2px solid lightgray;
   position: absolute;
-  left: 49%;
+  left: 50%;
   bottom: 8%;
+  transform: translateX(-50%);
   border-radius: 50px;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.626);
 }
+
 .scroll-down::before,
 .scroll-down::after {
   content: "";
@@ -189,6 +204,52 @@ header ul a:hover {
   }
 }
 
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .hero-info h1 {
+    font-size: 48px;
+    line-height: 60px;
+  }
+
+  .hero-info p {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-info h1 {
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .hero-info p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-info h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .hero-info p {
+    font-size: 16px;
+  }
+
+  .scroll-down {
+    height: 40px;
+    width: 24px;
+  }
+
+  .scroll-down::before,
+  .scroll-down::after {
+    height: 8px;
+    width: 8px;
+  }
+}
+
+
 /* About Section */
 
 .info-section {
@@ -216,6 +277,7 @@ header ul a:hover {
   transition: 0.5s;
   text-align: center;
   padding: 40px 20px;
+  margin-top: 50px;
 }
 
 .card p {
@@ -262,16 +324,8 @@ header ul a:hover {
   width: 400px;
 }
 
-.project-vidbox img {
-  object-fit: cover;
-  width: 100%;
-  box-shadow: 0 0 10px lightgray;
-  border-radius: 20px;
-  transition: 0.5s;
-}
-
 .project-card img:hover {
-  box-shadow: 0 0 25px rgb(255, 255, 255);
+  box-shadow: 0 0 10px rgb(255, 255, 255);
 }
 
 .project-info {
@@ -633,13 +687,14 @@ textarea {
   width: 0%;
   background-color: #19213ab8;
   z-index: 999;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.479);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.479);
   backdrop-filter: blur(10px);
   opacity: 0;
   border-bottom-left-radius: 100%;
 }
 
 .close-icon {
+  margin-top: 10px;
   font-size: 25px;
   color: lightgray;
   padding-left: 10px;
@@ -647,6 +702,7 @@ textarea {
 }
 
 .sidebar ul {
+  margin-top: 10px;
   padding-left: 20px;
 }
 
@@ -660,7 +716,6 @@ textarea {
   text-decoration: none;
   color: lightgray;
   font-size: 20px;
-  text-shadow: 0 0 15px #4c4c4c;
 }
 
 .social-sidebar {
@@ -673,17 +728,18 @@ textarea {
   font-size: 25px;
   padding: 5px 5px;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.2s;
+  color: lightgray;
 }
 
 /* Sidebar Open Animation */
 .sidebar.open-sidebar {
-  animation: openSideBarAnimation 1.5s forwards;
+  animation: openSideBarAnimation 1s forwards;
 }
 
 @keyframes openSideBarAnimation {
   to {
-    width: 40%;
+    width: 50%;
     opacity: 1;
     bottom: 0;
     border-radius: 0;
@@ -693,12 +749,12 @@ textarea {
 /* Sidebar close Animation */
 
 .sidebar.close-sidebar {
-  animation: closeSideBarAnimation 1.5s forwards;
+  animation: closeSideBarAnimation 1s forwards;
 }
 
 @keyframes closeSideBarAnimation {
   from {
-    width: 40%;
+    width: 50%;
     opacity: 1;
     bottom: 0;
     border-radius: 0;
@@ -738,11 +794,6 @@ textarea {
 
   .info-cards {
     grid-template-columns: auto;
-  }
-
-  .card:nth-child(3) {
-    grid-column: span 2;
-    height: 70vh;
   }
 
   .info-cards .card h1 {
@@ -882,6 +933,19 @@ textarea {
     margin-bottom: 50px;
   }
 
+  .form-row {
+    flex-direction: column; 
+  }
+
+  .form-row label {
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .contact-box button {
+    align-self: center;
+  }
+
   .footer {
     font-size: 10px;
   }
@@ -914,8 +978,8 @@ textarea {
   }
 
   .scroll-down {
-    bottom: 15%;
-    left: 60%;
+    bottom: 20%;
+    left: 50%;
   }
 
   .section-title {
@@ -927,17 +991,15 @@ textarea {
     flex-direction: column;
   }
 
-  .card {
-    min-height: 20rem;
-  }
-
-  .card h1 {
-    bottom: 30%;
-    font-size: 5px;
+  .project img{
+    width: 200px;
+    height: 100px;
+    margin-left: 10px;
   }
 
   .project-card {
-    height: 50%;
+    height: 60%;
+    margin-left: 10px;
   }
 
   .project-info p {
@@ -945,26 +1007,42 @@ textarea {
   }
 
   .project-info {
-    margin-left: -80px;
+    margin-left: 20px;
+    text-align: justify;
   }
+
+  .project-info h1{
+    text-align: center;
+  }
+  
 
   .skills-box {
     height: 120vh;
     margin-right: 30px;
   }
 
-  .slider {
-    bottom: 0%;
+  .coder{
+    top: 60%;
   }
 
   .contact-section {
-    scale: 0.9;
-    height: 120vh;
+    padding: 80px 10px 40px;
+    gap: 30px;
   }
 
-  .contact-section .section-title {
-    top: -30px;
-    left: 25%;
+  .contact-section h1 {
+    font-size: 2rem;
+  }
+
+  .form-row input,
+  .form-row textarea {
+    width: 100%;
+  }
+
+  .form-message {
+    left: 10px;
+    right: 10px;
+    text-align: center;
   }
 
   .footer {
